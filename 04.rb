@@ -1,4 +1,3 @@
-require 'minitest/autorun'
 class GameLive
 
   def initialize()
@@ -39,7 +38,6 @@ class GameLive
         end
       end
     end
-
     @matrix = temMatrix
     return @matrix
   end
@@ -101,25 +99,15 @@ class GameLive
         celulasVivas += 1
       end
     end
-
     if esViva
       return (celulasVivas == 2 || celulasVivas == 3) ? 1 : 0;
     else
       return celulasVivas == 3 ? 1 : 0;
     end
-
   end
 end
 
-# obj = GameLive.new()
-# obj.juegoDibujar()
-
-# for i in 0..15
-#   obj.jugandoGame()
-#   puts
-#   obj.juegoDibujar()
-# end
-
+require 'minitest/autorun'
 class GamecaseTest < Minitest::Test
   def initialize()
   end
@@ -139,11 +127,17 @@ class GamecaseTest < Minitest::Test
     testObject.juegoDibujar()
 
     for i in 0..0
-      testObject.jugandoGame()
+      res = testObject.jugandoGame()
       puts
       testObject.juegoDibujar()
     end
 
+    testMatrix = Array.new(10) { Array.new(10) { 0 } }
+    testMatrix[2][2] = 1
+    testMatrix[2][3] = 1
+    testMatrix[2][4] = 1
+
+    assert_equal res, testMatrix
     # assert_equal[]
   end
 end
